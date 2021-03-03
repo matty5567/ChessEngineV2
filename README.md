@@ -2,7 +2,7 @@ Representing the chess board:
 
 - Pieces
 - Players move
-- Has/ can castle
+
 
 
 1, 2, 4, 8
@@ -12,7 +12,7 @@ Pieces:   Black    White
 - Bishop   3       11
 - Queen    5       12
 - King	   6       13
-- Pawn     7	   14
+- Pawn     7	     14
 - Rook     9       15
 
 
