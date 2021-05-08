@@ -27,10 +27,6 @@ function onDrop(event) {
           console.log('GET response:');
           console.log(text.body); 
       });
-
-      
-
-
   }
 
 
@@ -47,13 +43,37 @@ for (var rank=1; rank<9; rank++){
     }
 }
 
+function fenToBoard(fen){
+  rows = fen.split('/');
+  console.log(rows)
+  
+  for (var i=0; i<8; i++){
+    if (rows[i] == '8'){
+      continue
+    }
+    for (var j=0; j<8; j++){
+      let piece = document.createElement('div');
+      piece.className = 'piece ' + rows[i][j];
+      piece.id = 'piece ' + rows[i][j] + ' ' + i + j;
+      piece.draggable="true";
+      piece.addEventListener('dragstart', onDragStart)
+      let position = document.getElementById('square' + String(i+1) + String(j+1));
+      console.log(rows[i][j])
+      position.appendChild(piece);
+    }
 
+  }
+}
 
-let piece = document.createElement('div');
-piece.className = 'piece bk';
-piece.draggable="true";
-piece.id = 'bk'
-piece.addEventListener('dragstart', onDragStart)
-let position = document.getElementById('square77');
-position.appendChild(piece);
+function setup(){
+  fetch('/start').then(function (response) {
+    return response.json();
+}).then(function (text) {
+    console.log(text.body); 
+    fenToBoard(text.body);
+
+});
+}
+
+setup();
 
